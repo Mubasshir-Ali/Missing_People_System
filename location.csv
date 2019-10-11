@@ -1,0 +1,306 @@
+contry_id,cuntry_name,province_id,province_name,city_id,city_name
+1,Pakistan,1,Punjab,1,Ahmadpur East
+1,Pakistan,1,Punjab,2,Ahmed Nager Chatha
+1,Pakistan,1,Punjab,3,Ali Khan Abad
+1,Pakistan,1,Punjab,4,Alipur
+1,Pakistan,1,Punjab,5,Arifwala
+1,Pakistan,1,Punjab,6,Attock
+1,Pakistan,1,Punjab,7,Bhera
+1,Pakistan,1,Punjab,8,Bhalwal
+1,Pakistan,1,Punjab,9,Bahawalnagar
+1,Pakistan,1,Punjab,10,Bahawalpur
+1,Pakistan,1,Punjab,11,Bhakkar
+1,Pakistan,1,Punjab,12,Burewala
+1,Pakistan,1,Punjab,13,Chillianwala
+1,Pakistan,1,Punjab,14,Chakwal
+1,Pakistan,1,Punjab,15,Chak Jhumra
+1,Pakistan,1,Punjab,16,Chichawatni
+1,Pakistan,1,Punjab,17,Chiniot
+1,Pakistan,1,Punjab,18,Chishtian
+1,Pakistan,1,Punjab,19,Chunian
+1,Pakistan,1,Punjab,20,Dajkot
+1,Pakistan,1,Punjab,21,Daska
+1,Pakistan,1,Punjab,22,Davispur
+1,Pakistan,1,Punjab,23,Darya Khan
+1,Pakistan,1,Punjab,24,Dera Ghazi Khan
+1,Pakistan,1,Punjab,25,Dhaular
+1,Pakistan,1,Punjab,26,Dina
+1,Pakistan,1,Punjab,27,Dinga
+1,Pakistan,1,Punjab,28,Dipalpur
+1,Pakistan,1,Punjab,29,Faisalabad
+1,Pakistan,1,Punjab,30,Fateh Jang
+1,Pakistan,1,Punjab,31,Ghakhar Mandi
+1,Pakistan,1,Punjab,32,Gojra
+1,Pakistan,1,Punjab,33,Gujranwala
+1,Pakistan,1,Punjab,34,Gujrat
+1,Pakistan,1,Punjab,35,Gujar Khan
+1,Pakistan,1,Punjab,36,Harappa
+1,Pakistan,1,Punjab,37,Hafizabad
+1,Pakistan,1,Punjab,38,Haroonabad
+1,Pakistan,1,Punjab,39,Hasilpur
+1,Pakistan,1,Punjab,40,Haveli Lakha
+1,Pakistan,1,Punjab,41,Jalalpur Jattan
+1,Pakistan,1,Punjab,42,Jampur
+1,Pakistan,1,Punjab,43,Jaranwala
+1,Pakistan,1,Punjab,44,Jhang
+1,Pakistan,1,Punjab,45,Jhelum
+1,Pakistan,1,Punjab,46,Kalabagh
+1,Pakistan,1,Punjab,47,Karor Lal Esan
+1,Pakistan,1,Punjab,48,Kasur
+1,Pakistan,1,Punjab,49,Kamalia
+1,Pakistan,1,Punjab,50,K?moke
+1,Pakistan,1,Punjab,51,Khanewal
+1,Pakistan,1,Punjab,52,Khanpur
+1,Pakistan,1,Punjab,53,Khanqah Sharif
+1,Pakistan,1,Punjab,54,Kharian
+1,Pakistan,1,Punjab,55,Khushab
+1,Pakistan,1,Punjab,56,Kot Adu
+1,Pakistan,1,Punjab,57,Jauharabad
+1,Pakistan,1,Punjab,58,Lahore
+1,Pakistan,1,Punjab,59,Islamabad
+1,Pakistan,1,Punjab,60,Lalamusa
+1,Pakistan,1,Punjab,61,Layyah
+1,Pakistan,1,Punjab,62,Liaquat Pur
+1,Pakistan,1,Punjab,63,Lodhran
+1,Pakistan,1,Punjab,64,Malakwal
+1,Pakistan,1,Punjab,65,Mamoori
+1,Pakistan,1,Punjab,66,Mailsi
+1,Pakistan,1,Punjab,67,Mandi Bahauddin
+1,Pakistan,1,Punjab,68,Mian Channu
+1,Pakistan,1,Punjab,69,Mianwali
+1,Pakistan,1,Punjab,70,Miani
+1,Pakistan,1,Punjab,71,Multan
+1,Pakistan,1,Punjab,72,Murree
+1,Pakistan,1,Punjab,73,Muridke
+1,Pakistan,1,Punjab,74,Mianwali Bangla
+1,Pakistan,1,Punjab,75,Muzaffargarh
+1,Pakistan,1,Punjab,76,Narowal
+1,Pakistan,1,Punjab,77,Nankana Sahib
+1,Pakistan,1,Punjab,78,Okara
+1,Pakistan,1,Punjab,79,Renala Khurd
+1,Pakistan,1,Punjab,80,Pakpattan
+1,Pakistan,1,Punjab,81,Pattoki
+1,Pakistan,1,Punjab,82,Pindi Bhattian
+1,Pakistan,1,Punjab,83,Pind Dadan Khan
+1,Pakistan,1,Punjab,84,Pir Mahal
+1,Pakistan,1,Punjab,85,Qaimpur
+1,Pakistan,1,Punjab,86,Qila Didar Singh
+1,Pakistan,1,Punjab,87,Rabwah
+1,Pakistan,1,Punjab,88,Raiwind
+1,Pakistan,1,Punjab,89,Rajanpur
+1,Pakistan,1,Punjab,90,Rahim Yar Khan
+1,Pakistan,1,Punjab,91,Rawalpindi
+1,Pakistan,1,Punjab,92,Sadiqabad
+1,Pakistan,1,Punjab,93,Safdarabad
+1,Pakistan,1,Punjab,94,Sahiwal
+1,Pakistan,1,Punjab,95,Sambrial
+1,Pakistan,1,Punjab,96,Samundri
+1,Pakistan,1,Punjab,97,Sangla Hill
+1,Pakistan,1,Punjab,98,Sarai Alamgir
+1,Pakistan,1,Punjab,99,Sargodha
+1,Pakistan,1,Punjab,100,Shakargarh
+1,Pakistan,1,Punjab,101,Sheikhupura
+1,Pakistan,1,Punjab,102,Shujaabad
+1,Pakistan,1,Punjab,103,Sialkot
+1,Pakistan,1,Punjab,104,Sohawa
+1,Pakistan,1,Punjab,105,Soianwala
+1,Pakistan,1,Punjab,106,Siranwali
+1,Pakistan,1,Punjab,107,Tandlianwala
+1,Pakistan,1,Punjab,108,Talagang
+1,Pakistan,1,Punjab,109,Taxila
+1,Pakistan,1,Punjab,110,Toba Tek Singh
+1,Pakistan,1,Punjab,111,Vehari
+1,Pakistan,1,Punjab,112,Wah Cantonment
+1,Pakistan,1,Punjab,113,Wazirabad
+1,Pakistan,1,Punjab,114,Yazman
+1,Pakistan,1,Punjab,115,Zafarwal
+1,Pakistan,2,Sindh,116,Badin
+1,Pakistan,2,Sindh,117,Bhirkan
+1,Pakistan,2,Sindh,118,Bhiria City
+1,Pakistan,2,Sindh,119,Bhiria Road
+1,Pakistan,2,Sindh,120,Rajo Khanani
+1,Pakistan,2,Sindh,121,Chak
+1,Pakistan,2,Sindh,122,Dadu
+1,Pakistan,2,Sindh,123,Digri
+1,Pakistan,2,Sindh,124,Diplo
+1,Pakistan,2,Sindh,125,Dokri
+1,Pakistan,2,Sindh,126,Gambat
+1,Pakistan,2,Sindh,127,Garhi Yasin
+1,Pakistan,2,Sindh,128,Ghotki
+1,Pakistan,2,Sindh,129,Mirpur Mathelo
+1,Pakistan,2,Sindh,130,Daharki
+1,Pakistan,2,Sindh,131,Ubaro
+1,Pakistan,2,Sindh,132,Hyderabad
+1,Pakistan,2,Sindh,133,Islamkot
+1,Pakistan,2,Sindh,134,Jacobabad
+1,Pakistan,2,Sindh,135,Jamshoro
+1,Pakistan,2,Sindh,136,Jungshahi
+1,Pakistan,2,Sindh,137,Kandhkot
+1,Pakistan,2,Sindh,138,Kandiaro
+1,Pakistan,2,Sindh,139,Karachi
+1,Pakistan,2,Sindh,140,Kashmore
+1,Pakistan,2,Sindh,141,Keti Bandar
+1,Pakistan,2,Sindh,142,Khadro
+1,Pakistan,2,Sindh,143,Khairpur
+1,Pakistan,2,Sindh,144,Khipro
+1,Pakistan,2,Sindh,145,Korangi
+1,Pakistan,2,Sindh,146,Kotri
+1,Pakistan,2,Sindh,147,Larkana
+1,Pakistan,2,Sindh,148,Malir
+1,Pakistan,2,Sindh,149,Madeji
+1,Pakistan,2,Sindh,150,Matiari
+1,Pakistan,2,Sindh,151,Mehar
+1,Pakistan,2,Sindh,152,Mirpur Khas
+1,Pakistan,2,Sindh,153,Mithani
+1,Pakistan,2,Sindh,154,Mithi
+1,Pakistan,2,Sindh,155,Mehrabpur
+1,Pakistan,2,Sindh,156,Moro
+1,Pakistan,2,Sindh,157,Nagarparkar
+1,Pakistan,2,Sindh,158,Naudero
+1,Pakistan,2,Sindh,159,Naushahro Feroze
+1,Pakistan,2,Sindh,160,Nawabshah
+1,Pakistan,2,Sindh,161,Qambar
+1,Pakistan,2,Sindh,162,Sijawal Junejo
+1,Pakistan,2,Sindh,163,Qasimabad
+1,Pakistan,2,Sindh,164,Ranipur
+1,Pakistan,2,Sindh,165,Ratodero
+1,Pakistan,2,Sindh,166,Rohri
+1,Pakistan,2,Sindh,167,Sakrand
+1,Pakistan,2,Sindh,168,Sanghar
+1,Pakistan,2,Sindh,169,Shahbandar
+1,Pakistan,2,Sindh,170,Shahdadkot
+1,Pakistan,2,Sindh,171,Shahdadpur
+1,Pakistan,2,Sindh,172,Shahpur Chakar
+1,Pakistan,2,Sindh,173,Shikarpaur
+1,Pakistan,2,Sindh,174,Sinjhoro
+1,Pakistan,2,Sindh,175,Sukkur
+1,Pakistan,2,Sindh,176,Tangwani
+1,Pakistan,2,Sindh,177,Tando Adam Khan
+1,Pakistan,2,Sindh,178,Tando Allahyar
+1,Pakistan,2,Sindh,179,Tando Muhammad Khan
+1,Pakistan,2,Sindh,180,Thatta
+1,Pakistan,2,Sindh,181,Thari Mirwah
+1,Pakistan,2,Sindh,182,Umerkot
+1,Pakistan,2,Sindh,183,Warah
+1,Pakistan,2,Sindh,184,Piryaloi
+1,Pakistan,2,Sindh,185,Tharushah
+1,Pakistan,2,Sindh,186,Sita Road
+1,Pakistan,2,Sindh,187,Pir Jo Goth
+1,Pakistan,2,Sindh,188,Shahpur jahania
+1,Pakistan,2,Sindh,189,Qubo Saeed Khan
+1,Pakistan,2,Sindh,190,Mehrabpur
+1,Pakistan,2,Sindh,191,Samaro
+1,Pakistan,2,Sindh,192,Maqsoodo Rind
+1,Pakistan,2,Sindh,193,Sann
+1,Pakistan,2,Sindh,194,Manjhand
+1,Pakistan,2,Sindh,195,Lakhi ghulam shah
+1,Pakistan,2,Sindh,196,Mian Sahib
+1,Pakistan,2,Sindh,197,Khairpur Nathan Shah
+1,Pakistan,2,Sindh,198,Boriri
+1,Pakistan,2,Sindh,199,Kunri
+1,Pakistan,2,Sindh,200,Thul
+1,Pakistan,3,Khyber Pakhtoon Khwan,201,Abbottabad
+1,Pakistan,3,Khyber Pakhtoon Khwan,202,Adezai
+1,Pakistan,3,Khyber Pakhtoon Khwan,203,Alpuri
+1,Pakistan,3,Khyber Pakhtoon Khwan,204,Akora Khattak
+1,Pakistan,3,Khyber Pakhtoon Khwan,205,Ayubia
+1,Pakistan,3,Khyber Pakhtoon Khwan,206,Banda Daud Shah
+1,Pakistan,3,Khyber Pakhtoon Khwan,207,Bannu
+1,Pakistan,3,Khyber Pakhtoon Khwan,208,Batkhela
+1,Pakistan,3,Khyber Pakhtoon Khwan,209,Battagram
+1,Pakistan,3,Khyber Pakhtoon Khwan,210,Birote
+1,Pakistan,3,Khyber Pakhtoon Khwan,211,Chakdara
+1,Pakistan,3,Khyber Pakhtoon Khwan,212,Charsadda
+1,Pakistan,3,Khyber Pakhtoon Khwan,213,Cherat
+1,Pakistan,3,Khyber Pakhtoon Khwan,214,Chitral
+1,Pakistan,3,Khyber Pakhtoon Khwan,215,Daggar
+1,Pakistan,3,Khyber Pakhtoon Khwan,216,Dargai
+1,Pakistan,3,Khyber Pakhtoon Khwan,217,Dera Ismail Khan
+1,Pakistan,3,Khyber Pakhtoon Khwan,218,Doaba
+1,Pakistan,3,Khyber Pakhtoon Khwan,219,Dir
+1,Pakistan,3,Khyber Pakhtoon Khwan,220,Drosh
+1,Pakistan,3,Khyber Pakhtoon Khwan,221,Hangu
+1,Pakistan,3,Khyber Pakhtoon Khwan,222,Haripur
+1,Pakistan,3,Khyber Pakhtoon Khwan,223,Karak
+1,Pakistan,3,Khyber Pakhtoon Khwan,224,Kohat
+1,Pakistan,3,Khyber Pakhtoon Khwan,225,Kulachi
+1,Pakistan,3,Khyber Pakhtoon Khwan,226,Lakki Marwat
+1,Pakistan,3,Khyber Pakhtoon Khwan,227,Latamber
+1,Pakistan,3,Khyber Pakhtoon Khwan,228,Madyan
+1,Pakistan,3,Khyber Pakhtoon Khwan,229,Mansehra
+1,Pakistan,3,Khyber Pakhtoon Khwan,230,Mardan
+1,Pakistan,3,Khyber Pakhtoon Khwan,231,Mastuj
+1,Pakistan,3,Khyber Pakhtoon Khwan,232,Mingora
+1,Pakistan,3,Khyber Pakhtoon Khwan,233,"Naran, Kaghan Valley"
+1,Pakistan,3,Khyber Pakhtoon Khwan,234,Nowshera
+1,Pakistan,3,Khyber Pakhtoon Khwan,235,Paharpur
+1,Pakistan,3,Khyber Pakhtoon Khwan,236,Pabbi
+1,Pakistan,3,Khyber Pakhtoon Khwan,237,Peshawar
+1,Pakistan,3,Khyber Pakhtoon Khwan,238,Risalpur
+1,Pakistan,3,Khyber Pakhtoon Khwan,239,Saidu Sharif
+1,Pakistan,3,Khyber Pakhtoon Khwan,240,Shewa Adda
+1,Pakistan,3,Khyber Pakhtoon Khwan,241,Swabi
+1,Pakistan,3,Khyber Pakhtoon Khwan,242,Swat
+1,Pakistan,3,Khyber Pakhtoon Khwan,243,Tangi
+1,Pakistan,3,Khyber Pakhtoon Khwan,244,Tank
+1,Pakistan,3,Khyber Pakhtoon Khwan,245,Thall
+1,Pakistan,3,Khyber Pakhtoon Khwan,246,Timergara
+1,Pakistan,3,Khyber Pakhtoon Khwan,247,Tordher
+1,Pakistan,4,Balochistan,248,Quetta
+1,Pakistan,4,Balochistan,249,Turbat
+1,Pakistan,4,Balochistan,250,Khuzdar
+1,Pakistan,4,Balochistan,251,Hub
+1,Pakistan,4,Balochistan,252,Chaman
+1,Pakistan,4,Balochistan,253,Dera Murad Jamali
+1,Pakistan,4,Balochistan,254,Gwadar
+1,Pakistan,4,Balochistan,255,Dera Allah Yar
+1,Pakistan,4,Balochistan,256,Usta Mohammad
+1,Pakistan,4,Balochistan,257,Sui
+1,Pakistan,4,Balochistan,258,Sibi
+1,Pakistan,4,Balochistan,259,Loralai
+1,Pakistan,4,Balochistan,260,Tump
+1,Pakistan,4,Balochistan,261,Nushki
+1,Pakistan,4,Balochistan,262,Zhob
+1,Pakistan,4,Balochistan,263,Kharan
+1,Pakistan,4,Balochistan,264,Chitkan
+1,Pakistan,4,Balochistan,265,Khanozai
+1,Pakistan,5,Gilgit Baltistan,266,Askole
+1,Pakistan,5,Gilgit Baltistan,267,Astore
+1,Pakistan,5,Gilgit Baltistan,268,Bunji (or Boanzhi)
+1,Pakistan,5,Gilgit Baltistan,269,Chilas
+1,Pakistan,5,Gilgit Baltistan,270,Chillinji
+1,Pakistan,5,Gilgit Baltistan,271,Chiran
+1,Pakistan,5,Gilgit Baltistan,272,Gakuch
+1,Pakistan,5,Gilgit Baltistan,273,Ghangche
+1,Pakistan,5,Gilgit Baltistan,274,Ghizer
+1,Pakistan,5,Gilgit Baltistan,275,Gilgit
+1,Pakistan,5,Gilgit Baltistan,276,Dayor
+1,Pakistan,5,Gilgit Baltistan,277,Sultanabad - Gilgit
+1,Pakistan,5,Gilgit Baltistan,278,oshikhanda Gilgit
+1,Pakistan,5,Gilgit Baltistan,279,Jalalabad
+1,Pakistan,5,Gilgit Baltistan,280,Jutial Gilgit
+1,Pakistan,5,Gilgit Baltistan,281,Alyabad Hunza
+1,Pakistan,5,Gilgit Baltistan,282,Gorikot
+1,Pakistan,5,Gilgit Baltistan,283,Gulmit
+1,Pakistan,5,Gilgit Baltistan,284,Jaglot
+1,Pakistan,5,Gilgit Baltistan,285,Chalt (Nagar)
+1,Pakistan,5,Gilgit Baltistan,286,Thole (Nagar)
+1,Pakistan,5,Gilgit Baltistan,287,Nasir Abad
+1,Pakistan,5,Gilgit Baltistan,288,Mayoon
+1,Pakistan,5,Gilgit Baltistan,289,Khana Abad
+1,Pakistan,5,Gilgit Baltistan,290,Hussain Abad
+1,Pakistan,5,Gilgit Baltistan,291,Qasimabad Masoot (Nagar)
+1,Pakistan,5,Gilgit Baltistan,292,Nagar Proper
+1,Pakistan,5,Gilgit Baltistan,293,Ghulmat (Nagar)
+1,Pakistan,5,Gilgit Baltistan,294,Karimabad (Hunza)
+1,Pakistan,5,Gilgit Baltistan,295,Ishkoman
+1,Pakistan,5,Gilgit Baltistan,296,Khaplu
+1,Pakistan,5,Gilgit Baltistan,297,Minimerg
+1,Pakistan,5,Gilgit Baltistan,298,Misgar
+1,Pakistan,5,Gilgit Baltistan,299,Passu
+1,Pakistan,5,Gilgit Baltistan,300,Shimshal
+1,Pakistan,5,Gilgit Baltistan,301,Skardu
+1,Pakistan,5,Gilgit Baltistan,302,Sust
+1,Pakistan,5,Gilgit Baltistan,303,Thowar
+1,Pakistan,5,Gilgit Baltistan,304,Kharmang
+1,Pakistan,5,Gilgit Baltistan,305,Roundo

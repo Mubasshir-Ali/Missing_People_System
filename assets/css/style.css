@@ -1,0 +1,29 @@
+.c-rounded{
+    height: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    border: 1px solid #e5e5e5;
+    line-height: 70px;
+    font-size: 30px;
+    color: #e84444;
+}
+.height{
+    height: 200px;
+}
+.h-59{
+    height: 59px;
+}
+.s-detail{
+    display: none;
+}
+.p-img:hover +.s-detail{
+    display: block !important;
+}
+.p-img:hover {
+    padding-bottom: 0px !important;
+}
+.sp_img{
+    width: 300px;
+    height: 300px;
+    border: 2px solid #007bff!important;
+}
