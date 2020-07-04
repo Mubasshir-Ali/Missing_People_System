@@ -41,7 +41,7 @@ if(isset($_GET['del'])){
     $del_id = $_GET['del'];
     
   if(isset($_SESSION['email']) and $_SESSION['role'] == 'admin'){
-        $del_query = "DELETE FROM categories WHERE id = '$del_id'";
+        $del_query = "DELETE FROM categories WHERE category_id = '$del_id'";
         if(mysqli_query($con, $del_query)){
             $del_msg = "Category Has Been Deleted";
         }
@@ -67,7 +67,7 @@ if(isset($_POST['update'])){
             $up_error = "Category Already Exist";
         }
         else{
-            $update_query = "UPDATE `categories` SET `category` = '$cat_name' WHERE `categories`.`id` = $edit_id";
+            $update_query = "UPDATE `categories` SET `category` = '$cat_name' WHERE `categories`.`category_id` = $edit_id";
             if(mysqli_query($con, $update_query)){
                 $up_msg = "Category Has Been Updated";
             }
@@ -89,11 +89,11 @@ if(isset($_POST['update'])){
             
             
            
-            <h1 class="text-primary pt-4">
+            <h1 class="text-primary pt-4 h1-s">
                 <i class="fa fa-folder-open"></i> Categories: <small class="text-dark"> Different Categories</small>
             </h1>
             <hr>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb bc-s">
                 <li><a href="index.php" class="pr-1"><i class="fa fa-tachometer"></i> Dashboard / </a></li>
               <li class="active pl-1"> <i class="fa fa-folder-open"></i> Categories</li>
             </ol>
@@ -118,7 +118,7 @@ if(isset($_POST['update'])){
                     <hr>
                     <?php
                         if(isset($_GET['edit'])){
-                            $edit_check_query = "SELECT * FROM categories WHERE id = $edit_id";
+                            $edit_check_query = "SELECT * FROM categories WHERE category_id = $edit_id";
                             $edit_check_run = mysqli_query($con, $edit_check_query);
                             if(mysqli_num_rows($edit_check_run) > 0){
 
@@ -147,7 +147,7 @@ if(isset($_POST['update'])){
                 </div>
                 <div class="col-md-6"><br>
                 <?php
-                    $get_query = "SELECT * FROM categories ORDER BY id DESC";
+                    $get_query = "SELECT * FROM categories ORDER BY category_id DESC";
                     $get_run = mysqli_query($con, $get_query);
                     if(mysqli_num_rows($get_run) > 0){
 
@@ -170,7 +170,7 @@ if(isset($_POST['update'])){
                     <tbody>
                        <?php 
                             while($get_row = mysqli_fetch_array($get_run)){
-                            $category_id = $get_row['id'];
+                            $category_id = $get_row['category_id'];
                             $category_name = $get_row['category'];
                         ?>
                         <tr>

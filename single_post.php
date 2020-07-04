@@ -1,30 +1,36 @@
 <!-- header -->
 <?php include "header.php"; ?> 
 <!-- slider -->
-<?php include "slider.php"; ?> 
 
+<?php   
+if(isset($_SESSION['user']['admin'])){
+    //$session_role = $_SESSION['role'];
+    $session_email = $_SESSION['email'];
+    $session_role = $_SESSION['role'];
+}
+?>
 <!-- ======================================== PHP ============================================  -->
-
 <?php 
+
 if(isset($_GET['post_id'])){
-    $post_id = $_GET['post_id'];  
+    $post_id = $_GET['post_id'];
     
-    $views_query = "UPDATE `posts` SET `views` = views + 1 WHERE `posts`.`id` = $post_id";
+    $views_query = "UPDATE `posts` SET `views` = views + 1 WHERE `posts`.`post_id` = $post_id";
     mysqli_query($con, $views_query);
     
-    $query = "SELECT * FROM posts WHERE status = 'publish' and id = $post_id";
+    $query = "SELECT * FROM posts WHERE status = 'publish' and post_id = $post_id";
     $run = mysqli_query($con, $query);
     if(mysqli_num_rows($run) > 0){
         $row = mysqli_fetch_array($run);
-        $id = $row['id'];
+        $id = $row['post_id'];
         $day = date('d', strtotime($row['cdate']));
         $mon_year = date('M, Y', strtotime($row['cdate']));
-
         $title = $row['title'];
         $user = $row['user'];
         $user_image = $row['user_image'];
         $image = $row['image'];
         $person_name = $row['person_name'];
+        $age = $row['age'];
         $gender = $row['gender'];
         $categories= $row['categories'];
         $countries = $row['countries'];
@@ -43,25 +49,29 @@ if(isset($_GET['post_id'])){
 }      
 ?>
 
-
 <!-- ==============single_post ============================ -->
-<section class="w-100 float-left pt-3 bg-white">
+<section class="w-100  mt-5 pb-5 bg-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-5">
                 <div class="posts bg-white mt-4 ">
                 <div class="container">
                     <div class="row">
                        <div class="text-center w-100">
                             <img class="rounded-circle border border-primary sp_img" src="assets/images/<?php echo $image;?>">
                         </div>            
-                        <div class="col-md-6 post-title py-4 ">
+                        <div class="col-md-4 post-title py-4 ">
                             <h4 class="pb-2 mb-0 text-primary  border-bottom border-primary">Title: <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php echo $title;?></p>  </h4>
                                      
                         </div>
-                        <div class="col-md-6 py-4 ">
+                        <div class="col-md-4 py-4 ">
                            <h4 class="pb-2 mb-0 text-primary  border-bottom border-primary">Category: 
                            <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php echo $categories;?></p>  </h4>
+                        </div>
+                        
+                        <div class="col-md-4 py-4 ">
+                           <h4 class="pb-2 mb-0 text-primary  border-bottom border-primary">Age: 
+                           <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php echo $age;?></p>  </h4>
                         </div>
                     
                         <div class="col-md-3 py-3">
@@ -84,7 +94,7 @@ if(isset($_GET['post_id'])){
                             </p>
                         </div>
                         <div class="col-md-3 py-3">
-                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">countries</h4>
+                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">Country</h4>
                             <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php 
                                     $Res_C = mysqli_query($con, "SELECT country_name from countries where country_id = ". $countries);
                                     $Row_C = mysqli_fetch_array($Res_C); echo $Row_C[0];
@@ -92,14 +102,14 @@ if(isset($_GET['post_id'])){
                         </div>
         
                         <div class="col-md-3 py-3">
-                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">states</h4>
+                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">State</h4>
                             <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php 
                                     $Res_C = mysqli_query($con, "SELECT state_name from states where state_id = ". $states);
                                     $Row_C = mysqli_fetch_array($Res_C); echo $Row_C[0];
                                 ?></p>
                         </div>
                         <div class="col-md-3 py-3">
-                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">cities</h4>
+                            <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">City</h4>
                             <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php 
                                     $Res_C = mysqli_query($con, "SELECT city_name from cities where city_id = ". $cities);
                                     $Row_C = mysqli_fetch_array($Res_C); echo $Row_C[0];
@@ -113,125 +123,149 @@ if(isset($_GET['post_id'])){
                             <h4 class="pb-2 mb-0 text-primary text-center  border-bottom border-primary">address:</h4>
                             <p class="bg-light text-center text-uppercase text-secondary py-3 h6"><?php echo ucfirst($address);?> </p>
                         </div>
-                        <div class="p-4">
-                        <h4 class="pb-2 mb-0 text-primary border-bottom border-primary">Description:</h4>
-                        <p class="description bg-light text-center text-uppercase text-secondary py-3 px-3">
-                            <?php echo ($post_data);?>
-                        </p>
-                        
-                        </div>
                     </div>
                 </div>
             </div>
-                <div class="post_comments">
                     <!-- comments -->
-            <?php
-                $c_query = "SELECT * FROM comments WHERE status = 'approved' and post_id = $post_id ORDER BY id DESC";
-                $c_run = mysqli_query($con,$c_query);
-                if(mysqli_num_rows($c_run) > 0){
-            ?>
-                <div>
-
+                    <?php
+                    
+                    if(isset($_GET['post_id'])){
+                    $post_id = $_GET['post_id'];
+                    $c_query = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY comment_id DESC";
+                    $c_run = mysqli_query($con,$c_query);
+                        
+                    }
+                    if(mysqli_num_rows($c_run) > 0){
+                ?>
                     <div class="container pb-5">
                        <?php
                         while($c_row = mysqli_fetch_array($c_run)){
-                            $c_id = $c_row['id'];
+                            $c_id = $c_row['comment_id'];
                             $c_name = $c_row['name'];
-                            $c_date = $c_row['date'];
+                            $c_date = date($c_row['cdate']);
                             $c_username = $c_row['username'];
                             $c_image = $c_row['image'];
                             $c_comment = $c_row['comment'];
-                        ?>
-                        <div class="row mb-3 border rounded">
-                            <div class="col-sm-3">
-                                <div class="mx-3 mt-3 px-3">
-                                    <img class="rounded-circle img-thumbnail" src="assets/images/<?php echo $c_image; ?>" alt="user-image">
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="py-3 px-4">
-                                    <div class=" mb-10">
-                                        <b class="text-primary"><?php echo ucfirst($c_name);?></b>
-                                        <span class="font-weight-light"><?php echo $c_date ?></span><br>
-                                        
-                                        <p><?php echo $c_comment;?></p>
-                                    </div>                            
-                                </div>
-                            </div>
-                        </div>
+                        
+                        ?>   
                         <?php 
                         }
                         ?>
                     </div>
-                     
                     <?php
-                        } 
-                    
-                    if(isset($_POST['submit'])){
-                        $cs_name = $_POST['name'];
-                        $cs_email = $_POST['email'];
-                        $cs_contact_no = $_POST['contact_no'];
-                        $cs_comment = $_POST['comment'];
-                        $cs_date = time();
-                        if(empty($cs_name) or empty($cs_email) or empty($cs_contact_no) or empty($cs_comment)){
-                          $error_msg = "All  feilds are Required";  
-                        }
-                        else{
-                            $cs_query = "INSERT INTO `comments` (`id`, `date`, `name`, `username`, `post_id`, `email`, `contact_no`, `image`, `comment`, `status`) VALUES (NULL, '$cs_date', '$cs_name', 'user', '$post_id', '$cs_email', '$cs_contact_no', 'client.png', '$cs_comment', 'pending')";
-                            if(mysqli_query($con, $cs_query)){
-                                $msg = "Comment Submited and waiting for Approval";
-                                $cs_name = "";
-                                $cs_email = "";
-                                $cs_contact_no = "";
-                                $cs_comment = "";
-                            }
-                            else{
-                                $error_msg = "Comment has not be sumited";
-                            }
-                        }
-                    }
-                    ?>
-                    
-                        
-                    <!-- comment form -->
-                    <div class="pb-5">
-                        <h4 class="text-primary">Add your comment:</h4>
-                        <p class="mb-3 text-danger">Your email address will not be published. Required fields are marked *</p>
-                        <form action="#" class="row" method="post">
-                            <div class="col-lg-12">
-                                <textarea name="comment" id="comment" class="form-control mb-3 p-2" placeholder="Your comment here" style="height: 180px;" required ><?php if(isset($cs_comment)){echo $cs_comment;}?></textarea>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" value="<?php if(isset($cs_name)){echo $cs_name;}?>" class="form-control mb-4" id="user-name" name="name" placeholder="Your name here" required>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" value="<?php if(isset($cs_contact_no)){echo $cs_contact_no;}?>" id="contact_no" name="contact_no" class="form-control mb-4" placeholder="Your Contact Number here" required>
-                            </div>
-                            <div class="col-12">
-                                <input type="email" value="<?php if(isset($cs_email)){echo $cs_email;}?>"id="user-email" name="email" class="form-control mb-4" placeholder="Your email address here" required>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <button class="btn btn-sm btn-primary" type="submit" value="send" name="submit">Submit</button>
-                                <?php
-                                    if(isset($error_msg)){
-                                        echo "<span style='color:red;' class='pull-right text-danger'>$error_msg</span>";
-                                    }
-                                    else if(isset($msg)){
-                                        echo "<span style='color:green;' class='pull-right text-success'>$msg</span>";
-                                    }
-                                    ?>
-                            </div>
-                        </form>
-                    </div>
-                    </div>
-                </div>
+                        } ?>
+                       
             </div>
                 
         </div>
     </div>
 </section>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+ 
+  
+  <div class="container">
+   <form method="POST" id="comment_form">
+   
+    <div class="form-group">
+     <input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Enter Your Name" />
+    </div>
+    
+    <div class="form-group">
+     <input type="text"  id="contact_no" name="contact_no" class="form-control" placeholder="Your Contact Number Here">
+    </div>
+    <div class="form-group">
+     <input type="email" id="email" name="email" class="form-control" placeholder="Your Email Address Here">
+    </div>
+    <div class="form-group">
+     <textarea name="comment_content" id="comment_content" class="form-control" placeholder="Enter Comment" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+     <input type="hidden" name="comment_id" id="comment_id" value="0" />
+     <input type="hidden" name="post_id" id="post_id" value="<?=$_GET["post_id"]?>" />
+     
+     <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Submit" />
+    </div>
+   </form>
+   <span id="comment_message"></span>
+   <br />
+   <div id="display_comment"></div>
+  </div>
 
+
+
+<script>
+$(document).ready(function(){
+ 
+ $('#comment_form').on('submit', function(event){
+  event.preventDefault();
+  var form_data = $(this).serialize();
+  $.ajax({
+   url:"add_comment.php",
+   method:"POST",
+   data:form_data,
+   dataType:"JSON",
+   success:function(data)
+   {
+    if(data.error != '')
+    {
+     $('#comment_form')[0].reset();
+     $('#comment_message').html(data.error);
+     $('#comment_id').val('0');
+     load_comment();
+    }
+   }
+  })
+ });
+
+ load_comment();
+
+ function load_comment()
+ {
+   
+ var vUrl = "fetch_comment.php?post_id=" + <?=$_GET['post_id']?>;
+  $.ajax({
+   url:vUrl ,
+   method:"POST",
+   success:function(data)
+   { 
+    $('#display_comment').html(data);
+   }
+  })
+ }
+
+ $(document).on('click', '.reply', function(){
+  var comment_id = $(this).attr("id");
+  $('#comment_id').val(comment_id);
+  $('#comment_name').focus();
+ });
+ 
+/*$(document).on('click', '.delete',function deletecomment(id) {
+
+       if(confirm("Are you sure you want to delete this comment?")) {
+
+            $.ajax({
+            url: "comment_delete.php",
+            type: "POST",
+            data: 'comment_id='+id,
+            success: function(data){
+                if (data)
+                {
+                    $("#comment-"+id).remove();
+                    if($("#count-number").length > 0) {
+                        var currentCount = parseInt($("#count-number").text());
+                        var newCount = currentCount - 1;
+                        $("#count-number").text(newCount)
+                    }
+                }
+            }
+           });
+        }
+     });*/
+});
+    
+
+</script>
 
 
 <!-- footer -->

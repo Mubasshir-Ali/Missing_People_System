@@ -10,68 +10,78 @@
       }
       
       if(isset($_GET['cat'])){
-          $cat_id = $_GET['cat'];
-          $cat_query = "SELECT * FROM categories WHERE id = $cat_id";
+          $category_id = $_GET['cat'];
+          $cat_query = "SELECT * FROM categories WHERE category_id = '$category_id'";
           $cat_run = mysqli_query($con, $cat_query);
           $cat_row = mysqli_fetch_array($cat_run);
-          $cat_name = $cat_row['category'];
+          $categories = $cat_row['category'];
       }
-      
-      
-      if(isset($_POST['search'])){
-          $search = $_POST['search-title'];
-          $all_posts_query = "SELECT * FROM posts WHERE status = 'publish'";
-          $all_posts_query .= " and person_name LIKE '%$search%'";
-          $all_posts_run = mysqli_query($con, $all_posts_query);
-          $all_posts = mysqli_num_rows($all_posts_run);
-          $total_pages = ceil($all_posts / $number_of_posts);
-          $posts_start_from = ($page_id - 1) * $number_of_posts;
-      }
-      else{
-          $all_posts_query = "SELECT * FROM posts WHERE status = 'publish'";
-          if(isset($cat_name)){
-              $all_posts_query .= " and category = '$cat_name'";
-          }
-          $all_posts_run = mysqli_query($con, $all_posts_query);
-          $all_posts = mysqli_num_rows($all_posts_run);
-          $total_pages = ceil($all_posts / $number_of_posts);
-          $posts_start_from = ($page_id - 1) * $number_of_posts;
-      }
-      
 
 ?>
 <!-- =========================================================================================  --->
 <?php
 
-
+$posts_start_from=0;
+   
 if(isset($_POST['search'])){
-        $search = $_POST['search-title'];
-        $query = "SELECT * FROM posts WHERE status = 'publish'";
-        $query .= " and person_name LIKE '%$search%'";
-        $query .= " ORDER BY id DESC LIMIT $posts_start_from, $number_of_posts";
+$and  = "";    
+    $person_name = $_POST['person_name'];
+    if($person_name != ""){
+        $and .= " and person_name = '$person_name'";
     }
-    else{
-        $query = "SELECT * FROM posts WHERE status = 'publish'";
-        if(isset($cat_name)){
-            $query .= " and category = '$cat_name'";
-        }
-        $query .= " ORDER BY id DESC LIMIT $posts_start_from, $number_of_posts";
+    $gender = $_POST['gender'];
+    if($gender != ""){
+        $and .= " and gender = '$gender'";
     }
+    $countries = $_POST['countries'];
+    if($countries != ""){
+        $and .= " and countries = '$countries'";
+    }
+    $states = $_POST['states'];
+    if($states != ""){
+        $and .= " and states = '$states'";
+    }
+    $cities = $_POST['cities'];
+    if($cities != ""){
+        $and .= " and cities = '$cities'";
+    }
+    /*$age_id = $_POST['age_id'];
+    if($age_id != ""){
+        $and .= " and age_id = '$age_id'";
+    }*/
+     $date= $_POST['cdate'];
+    if($date != ""){
+        $and .= " and cdate = '$date'";
+    }
+    }
+
+
+
+    if($_POST['categories'] != ""){
+            echo $and .= " and categories = '".$_POST['categories']."'";    
+    } elseif($categories != '') {
+         $and .= " and categories = '$categories'";    
+    } else {
+        $categories = '';
+    }
+
+        $query = "SELECT * FROM posts WHERE status = 'publish' ";
+        $query .=  $and;
+        $query .= " ORDER BY post_id DESC LIMIT $posts_start_from, $number_of_posts";
+   //echo $query;
 $run = mysqli_query($con,$query);
 if(mysqli_num_rows($run) > 0){
     while($row = mysqli_fetch_array($run)){
-        $id = $row['id'];
+        $id = $row['post_id'];
         $day = date('d', strtotime($row['cdate']));
         $mon_year = date('M, Y', strtotime($row['cdate']));
-        /*$date = getdate($row['cdate']);
-        $day = $date['mday'];
-        $month = $date['month'];
-        $year = $date['year'];*/
         $title = $row['title'];
         $user = $row['user'];
         $user_image = $row['user_image'];
         $image = $row['image'];
         $person_name = $row['person_name'];
+        $age = $row['age'];
+        //$age_id = $row['age_id'];
         $gender = $row['gender'];
         $categories= $row['categories'];
         $countries = $row['countries'];
@@ -81,10 +91,8 @@ if(mysqli_num_rows($run) > 0){
         $post_data = $row['post_data'];
         $views = $row['views'];
         $status = $row['status'];
-        
 ?>
-<div class="posts col-md-3 ">
-  
+<div class="posts col-md-4 col-sm-6 col-6 ">
         <div class="row">
            <div class="mt-2 mx-2 rounded">
             <div class="bg-primary text-white w-100 text-center">
@@ -98,8 +106,6 @@ if(mysqli_num_rows($run) > 0){
             <div class="w-100 bg-white post-title py-1 s-detail ">
                 <p class="paragraph mb-0">Name: <span class="ml-1 "> <?php echo ucfirst($person_name);?> </span></p>
             </div>
-           
-          
             </div>
         </div>
     </div>
@@ -114,20 +120,14 @@ else{
 <div class="col-md-12 mt-2">
 <nav aria-label="...">
   <ul class="pagination justify-content-center">
- <!--   <li class="page-item ">
-      <span class="page-link">Previous</span>
-    </li> -->
     <?php
         for($i = 1; $i <= $total_pages; $i++){
             echo "
                 <li class='page-item  ".($page_id == $i ? 'active': ' ')."'>
-                    <a class='page-link' href='index.php?page=".$i."&".(isset($cat_name)?"cat=$cat_id":" ")."' >$i</a>
+                    <a class='page-link' href='index.php?page=".$i."&".(isset($cat_name)?"category=$category_id":" ")."' >$i</a>
                 </li>";
         }
         ?>    
-  <!--  <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li> -->
   </ul>
 </nav>
 </div>

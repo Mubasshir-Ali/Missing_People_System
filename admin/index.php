@@ -13,7 +13,7 @@
     }*/
 ?>
 
-<div class="container-fluid w-100 float-left position-relative <h-100xx></h-100xx>">
+<div class="container-fluid w-100 float-left position-relative">
     <div class="row">
         <div class="col-md-3">
             <?php include "side_menu.php"; ?>   

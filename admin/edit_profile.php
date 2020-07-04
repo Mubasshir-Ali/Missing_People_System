@@ -1,4 +1,4 @@
-    <?php include "header.php"; ?> 
+<?php include "header.php"; ?> 
 <?php include "menu.php"; ?> 
 <!-- ================================================ -->
 <?php 
@@ -11,7 +11,7 @@ $session_email = $_SESSION['email'];
 
 if(isset($_GET['edit'])){
     $edit_id = $_GET['edit'];
-    $edit_query = "SELECT * FROM users WHERE id = $edit_id";
+    $edit_query = "SELECT * FROM users WHERE user_id = $edit_id";
     $edit_query_run = mysqli_query($con, $edit_query);
     if(mysqli_num_rows($edit_query_run) > 0){
         $edit_row = mysqli_fetch_array($edit_query_run);
@@ -20,7 +20,7 @@ if(isset($_GET['edit'])){
             $e_first_name = $edit_row['first_name'];
             $e_last_name = $edit_row['last_name'];
             $e_contact_no = $edit_row['contact_no'];
-            $e_password = $edit_row['password'];
+            //$e_password = $edit_row['password'];
             $e_image = $edit_row['image'];
             
         }
@@ -44,12 +44,12 @@ else{
         <div class="col-md-3">
             <?php include "side_menu.php"; ?>   
         </div>
-        <div class="col-md-9  pd-5 mb-5">                     
-            <h1 class="text-primary pt-4">
+        <div class="col-md-9  pd-5 mb-5 ">                     
+            <h1 class="text-primary pt-4 h1-s">
                 <i class="fa fa-user"></i> Profile: <small class="text-dark"> Personal Details </small>
             </h1>
             <hr>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb bc-s">
                 <li><a href="index.php" class="pr-1"><i class="fa fa-tachometer"></i> Dashboard / </a></li>
               <li class="active pl-1"><i class="fa fa-user"></i> Edit Profile </li>
             </ol>
@@ -60,7 +60,7 @@ else{
                         $first_name = mysqli_real_escape_string($con,$_POST['first_name']);
                         $last_name = mysqli_real_escape_string($con,$_POST['last_name']);
                        
-                        $password   = mysqli_real_escape_string($con, $_POST['password']);
+                        //$password   = mysqli_real_escape_string($con, $_POST['password']);
                         $contact_no = mysqli_real_escape_string($con, $_POST['contact_no']);
                         $image      = $_FILES['image']['name'];
                         $image_tmp  = $_FILES['image']['tmp_name'];
@@ -71,7 +71,7 @@ else{
                             $image = $e_image;
                         }
                         
-                        $salt_query = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
+                        $salt_query = "SELECT * FROM users ORDER BY user_id DESC LIMIT 1";
                         $salt_run = mysqli_query($con, $salt_query);
                         $salt_row = mysqli_fetch_array($salt_run);
                         $salt = $salt_row['salt'];
@@ -82,15 +82,8 @@ else{
                             $error = "All  feilds are Required";
                         }
                         else{
-                            $password = crypt($password, $salt);
-                            $update_query = /*"UPDATE `users` SET `first_name` = '$first_name', `last_name` = '$last_name', `image` = '$image', `contact_no` = '$contact_no',";*/
-                            
-                              "UPDATE users SET first_name = '$first_name' , last_name = '$last_name', contact_no = '$contact_no', password = '$password', image = '$image' WHERE id = '$edit_id'";
-                            
-                           /*if(isset($password)){
-                                $update_query .= ",`password` = '$insert_password'";
-                            }*/
-                            //$update_query .= " WHERE `users`.`id` = $edit_id";
+                            //$password = crypt($password, $salt);
+                            $update_query = "UPDATE users SET first_name = '$first_name' , last_name = '$last_name', contact_no = '$contact_no', image = '$image' WHERE user_id = '$edit_id'";
                             
                             if(mysqli_query($con, $update_query)){
                                 $msg = "User Has Been Updated";
@@ -110,7 +103,16 @@ else{
                     }
                     }
                     ?>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    
+                                    <?php
+                                        if(isset($error)){
+                                            echo "<span class='pull-right' style='color:red;'>$error</span>";
+                                        }
+                                        else if(isset($msg)){
+                                           echo "<span class='pull-right' style='color:green;'>$msg</span>";
+                                        }
+                                    ?>
+                <form action="" method="post" enctype="multipart/form-data">
                    <div class="row">
                        <div class="col-md-8  ">
                          <div class="container">
@@ -138,14 +140,7 @@ else{
                                   <div class="form-group">
                                     <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">First Name</h6>
                                     
-                                    <?php
-                                        if(isset($error)){
-                                            echo "<span class='pull-right' style='color:red;'>$error</span>";
-                                        }
-                                        else if(isset($msg)){
-                                           echo "<span class='pull-right' style='color:green;'>$msg</span>";
-                                        }
-                                    ?>
+                                    
                                     
                                     <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $e_first_name;?>">
                                   </div>
@@ -174,26 +169,6 @@ else{
                               
                             </div>
                             <hr class="my-4">
-                            <h6 class="heading-small text-muted mb-4">Password</h6>
-                            <div class="pl-lg-4">
-                             <div class="row">
-                                <div class="col-lg-6">
-                                  <div class="form-group">
-                                    <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Password</h6>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<?php echo $e_password;?>">
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="form-group">
-                                    <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Confirm Password</h6>
-                                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" value="<?php echo $e_password;?>" onkeyup='check_pass();'>
-                                        <span id="match"></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <hr class="my-4">
                             <h6 class="heading-small text-muted mb-4">Choose Image</h6>
                             <div class="pl-lg-4">
                              <div class="row">
@@ -207,20 +182,19 @@ else{
                               </div>
                             </div>
                             
-                          </form>
+                          
                         </div>
                       </div>
-                          
-                             </div>
-                           
-                           </div>
-                       </div>
+                    </div>
+                </div>
+                    </div>
                        <div class="col-md-4">
                            <?php
                                echo "<img src='assets/images/$e_image' width='100%'>";
                            ?>
                        </div>
-                   </div>
+                </div>
+            </form>
             
         </div><!--  .col-md-9/ -->  
     </div>
@@ -235,7 +209,7 @@ else{
 <?php include "footer.php"; ?> 
 
 
-<script>
+<script>/*
   var check_pass = function(){
     if (document.getElementById('password').value !=
       document.getElementById('confirm_password').value) {
@@ -246,5 +220,5 @@ else{
       document.getElementById('match').innerHTML = 'Password matching';
       document.getElementById('match').style.color = 'green';
     }
-  }
+  }*/
 </script>

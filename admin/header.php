@@ -21,36 +21,19 @@ session_start();
     <!-- favicon.ico  -->
     <link rel="icon" type="image/png" href="assets/images/favicon.ico">
     <!-- css ublod -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" >
+    
+    
+    
+
     
     <title> MPFRS </title>
     
 </head>
 <body>
+  <div class="container-fluid w-100 float-left position-relative pb-5 mb-5">
    
-   <?php
-       /* if(isset($_SESSION['success'])) : 
-    ?>
-    
-    <div>
-        
-        <h3>
-            
-            <?php
-                echo $_SESSION['success'];
-                //unset $_SESSION['success'];
-            ?>
-            
-        </h3>
-        
-    </div>
-    <?php endif ?>
-    
-    <?php if(isset($_SESSION['username'])) : ?>
-    
-    <h3>Welcom <strong><?php echo $_SESSION['username']; ?></strong></h3>
-    <button><a href="index.php?logout='1'"></a></button>
-    
-    <?php endif ?>*/
     
     
     

@@ -11,22 +11,24 @@
 ?>
 
 
-<div class="container-fluid w-100 float-left position-relative <h-100xx></h-100xx>">
+<div class="container-fluid w-100 float-left position-relative">
     <div class="row">
         <div class="col-md-3">
             <?php include "side_menu.php"; ?>   
         </div>
         <div class="col-md-9">
-             <h1 class="text-primary pt-4">
-                <i class="fas fa-plus-square"></i> Add Post <small>Add New Post</small>
+             <h1 class="text-primary pt-4 h1-s">
+                <i class="fas fa-plus-square"></i> Add Post : <small>Add New Post</small>
             </h1>
             <hr>
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb bc-s">
                 <ol class="breadcrumb">
                     <li><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard / </a></li>
                     <li class="active pl-1"><i class="fas fa-plus-square"></i> Add Post </li>
                 </ol>
             </nav>  
+            
+             <!----------------- Submit Button PHP Starts ------------------>
             
              <?php
                     if(isset($_POST['submit'])){
@@ -44,16 +46,17 @@
                         $image = $_FILES['image']['name'];
                         $tmp_name = $_FILES['image']['tmp_name'];
                         $person_name = $_POST['person_name'];
+                        $age = $_POST['age'];
                         $contact_no = $_POST['contact_no'];
                         $address = $_POST['address'];
                         $missing_date = $_POST['missing_date'];
                      //   $views = $_POST['views'];
-                        if(empty($title) or empty($image) or empty($person_name) or empty($gender) or empty($categories) or empty($countries) or empty($states) or empty($cities) or empty($contact_no) or empty($address)){
+                        if(empty($title) or empty($image) or empty($person_name) or empty($age) or empty($gender) or empty($categories) or empty($countries) or empty($states) or empty($cities) or empty($contact_no) or empty($address)){
                             $error = "All (*) Fields Are Required";
                             
                         }
                         else{
-                            $insert_query = "INSERT INTO `posts` (`cdate`, `title`, `user`, `image`, `person_name`, `gender`, `categories`, `countries`, `states`, `cities`, `contact_no`, `address`, `missing_date`, `views`, `status`) VALUES ('$date', '$title', '$session_email', '$image', '$person_name', '$gender', '$categories', '$countries', '$states', '$cities', '$contact_no', '$address', '$missing_date', '0', 'draft')";
+                            $insert_query = "INSERT INTO `posts` (`cdate`, `title`, `user`, `image`, `person_name`, `age`, `gender`, `categories`, `countries`, `states`, `cities`, `contact_no`, `address`, `missing_date`, `views`, `status`) VALUES ('$date', '$title', '$session_email', '$image', '$person_name', '$age', '$gender', '$categories', '$countries', '$states', '$cities', '$contact_no', '$address', '$missing_date', '0', 'draft')";
                             if(mysqli_query($con, $insert_query)){
                                 
                                 $msg = "Post Has Been Added Successfully";
@@ -82,7 +85,7 @@
                     }
                     ?>
                     
-                                
+                    <!----------------- Submit Button PHP End ------------------>
                     
                 
                     <form action="" method="post" enctype="multipart/form-data">
@@ -106,23 +109,32 @@
                             <div class="col-8">
                               <h3 class="mb-0"> Add Missing Person Details </h3>
                             </div>
+                            
+                             <!----------------- Submit Button HTML Starts ------------------>
+                            
                             <div class="col-4 text-right">
                               <input type="submit" value="Add Post" name="submit" class="btn btn-primary">
                               
                             </div>
+                            
+                            <!----------------- Submit Button HTML End ------------------>
+                            
                           </div>
                         </div>
                         <div class="card-body w-">
                           
                           <div class="pl-lg-4">
                              <div class="row">
+                               
+                               <!----------------- Post Type HTML & PHP Starts ------------------>
+                               
                                 <div class="col-lg-6">
                                   <h6 class="heading-small text-muted mb-4">Post Type</h6>
                                   <div class="form-group">
                                    <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Categories:*</h6>
                                             <select class="form-control" name="categories" id="categories">
                                                 <?php
-                                                $cat_query = "SELECT * FROM categories ORDER BY id DESC";
+                                                $cat_query = "SELECT * FROM categories ORDER BY category_id DESC";
                                                 $cat_run = mysqli_query($con, $cat_query);
                                                 if(mysqli_num_rows($cat_run) > 0){
                                                     while($cat_row = mysqli_fetch_array($cat_run)){
@@ -138,6 +150,11 @@
                                             </select>
                                   </div>
                                 </div>
+                                
+                                 <!----------------- Post Type HTML & PHP End ------------------>
+                                 
+                                <!----------------- Missing Since HTML & PHP Starts ------------------>
+                                
                                 <div class="col-lg-6">
                                   <h6 class="heading-small text-muted mb-4">Missing Since</h6>
                                   <div class="form-group">
@@ -145,8 +162,13 @@
                                         <input name="missing_date" type="date" placeholder="mm/dd/yyyy" id="" value="<?php if(isset($missing_date)){echo date('Y-m-d', strtotime($missing_date));}?>" class="form-control">
                                   </div>
                                 </div>
+                                
+                                <!----------------- Missing Since HTML & PHP End ------------------>
+                                
                               </div>
                             </div>
+                            
+                            <!----------------- User Information HTML & PHP Starts ------------------>
                            <hr class="my-4">
                             <h6 class="heading-small text-muted mb-4">User Information</h6>
                             
@@ -176,8 +198,19 @@
                                                 <option value="others" <?php if(isset($gender) and $gender == 'others'){echo "selected";}?>>Others</option>
                                             </select>
                                 </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                   <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Age:*</h6>
+                                    <input type="text" id="age" name="age" class="form-control" placeholder="Enter Missing Person Age" value="<?php if(isset($age)){echo $age;}?>">
+                                  </div>
+                                </div>
                               </div>
                             </div>
+                            
+                            <!----------------- User Information HTML & PHP End ------------------>
+                            
+                            <!----------------- Contact Information HTML & PHP Starts ------------------>
+                            
                             <hr class="my-4">
                             <!-- Address -->
                             <h6 class="heading-small text-muted mb-4">Contact Information</h6>
@@ -249,6 +282,10 @@
                               
                             </div>
                             
+                            <!----------------- Contact Information HTML & PHP End ------------------>
+                            
+                            <!----------------- Choose Image HTML & PHP Starts ------------------>
+                            
                             <hr class="my-4">
                             <h6 class="heading-small text-muted mb-4">Choose Image</h6>
                             <div class="pl-lg-4">
@@ -261,6 +298,8 @@
                                 </div>
                               </div>
                             </div>
+                            
+                            <!----------------- Choose Image HTML & PHP End ------------------>
                             
                           </form>
                         </div>
@@ -290,11 +329,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+<!----------------- Missing Date Picker Calender JS Starts ------------------>
+
 <script>
         $('#missing_date').datepicker({
             uiLibrary: 'bootstrap4'
         });
 </script>
+
+<!----------------- Missing Date Picker Calender JS End ------------------>
+
+<!----------------- States, Cities, Countries Dropdown JS Starts ------------------>
 
 <script>
 
@@ -354,3 +400,6 @@
 });
 
 </script>
+
+
+<!----------------- States, Cities, Countries Dropdown JS End ------------------>

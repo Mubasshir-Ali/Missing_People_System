@@ -1,4 +1,83 @@
 <?php include "header.php"; ?>
+<?php 
+	require('PHPMailer/PHPMailerAutoload.php'); 
+	require('crediantial.php');
+	//include "../connect.php";
+?>
+   
+
+
+<?php 
+//$conn = mysqli_connect("localhost","root","","login_register");
+
+if(isset($_POST['create'])){
+	
+    $date = date('Y-m-d');
+	$username = $_POST['username'];
+	$email = $_POST['email'];
+    $pass = $_POST['password'];
+	$repassword = $_POST['confirmpassword'];
+	/*$password = md5($_POST['password']);
+	$repassword = md5($_POST['confirmpassword']);*/
+    
+    $password = md5($pass);
+
+	$token = md5(rand('10000', '99999'));
+	if ($pass !== $repassword) {
+		$msg =  "Password & Retype password not match";
+	}else{
+		$select = "INSERT INTO users(cdate,username,email,password,token,status,role)VALUES('".$date."','".$username."','".$email."','".$password."','".$token."','Inactive','user')";
+		$result = mysqli_query($con,$select);
+
+		$lastId = mysqli_insert_id($con);
+
+		$url = 'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/5/MPFRSproj_v3/MPFRSproj/admin/verify.php?user_id='.$lastId.'&token='.$token;                                // Set email format to HTML
+		
+		$output = '<div>Thanks for registering with localhost. Please click this link to complete this registation <br>'.$url.'</div>';
+
+		if ($result == true) {
+
+			$mail = new PHPMailer();
+			$mail->isSMTP();  
+			//$mail->SMTPDebug = 2;                                   // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  					// Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 		// SMTP username
+			$mail->Password = PASS;                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom(EMAIL, 'info');
+			$mail->addAddress($email, 'username');     // Add a recipient
+			
+			//$mail->addAddress('ellen@example.com');               // Name is optional
+			//$mail->addReplyTo('info@example.com', 'Information');
+			//$mail->addCC('cc@example.com');
+			//$mail->addBCC('bcc@example.com');
+
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');         // Add attachments
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+			
+			
+			$mail->isHTML(true);
+
+			$mail->Subject = 'Register confirmation';
+			$mail->Body    = $output;
+			//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+				echo 'Message could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+				$msg = '<div class="alert alert-success">Congratulation, Your registration has been successful. please verify your account.</div>';
+			}
+		}
+	}
+}
+
+?>
+    
+   
 
     <body class="bg-primary">
 
@@ -12,14 +91,14 @@
                                 
                                 <div class="text-center w-75 m-auto">
                                     <a class="text-primary font-weight-bold" href="#">
-                                        <h3 class="m-0"><i class="fas fa-users"></i> MPFRS</h3>
+                                        <h3 class="m-0"><i class="fas fa-users"></i> MPS</h3>
                                     </a>
                                     <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
                                 
                                 <div>
                                     
-                                    <?php
+                                    <?php/*
                                     
                                         if(isset($_POST['create'])){
                                             
@@ -46,10 +125,12 @@
                                     }
                                     
                                         
-                                    
+                                    */
                                     ?>
                                     
                                 </div>
+                                
+                                <?php if (isset($msg)) { echo $msg; } ?>
 
                                 <form action="register.php" method="post" enctype="multipart/form-data" autocomplete="off">
                                    <?php include('errors.php') ?>
@@ -82,7 +163,7 @@
                                     </div>-->
                                     <div class="form-group">
                                         <label for="emailaddress">Email address</label>
-                                        <input class="form-control" type="email" name="emailaddress" id="emailaddress" required placeholder="Enter your email">
+                                        <input class="form-control" type="email" name="email" id="email" required placeholder="Enter your email">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
@@ -126,7 +207,9 @@
 <?php include "footer.php"; ?>
 
 
-<script>
+
+
+<script>/*
   var check_pass = function(){
     if (document.getElementById('pass').value !=
       document.getElementById('cpas').value) {

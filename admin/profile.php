@@ -14,16 +14,9 @@ $run = mysqli_query($con, $query);
 $row = mysqli_fetch_array($run);
 
 $image = $row['image'];
-$id = $row['id'];
+$id = $row['user_id'];
 $day = date('d', strtotime($row['cdate']));
 $mon_year = date('M, Y', strtotime($row['cdate']));
-
-//$get_users_row['cdate'];
-//$date = date('d-m-Y', strtotime($get_users_row['cdate']));
-/*$date = getdate($row['cdate']);
-$day = $date['mday'];
-$month = substr($date['month'],0,3);
-$year = $date['year'];*/
 $first_name = $row['first_name'];
 $last_name = $row['last_name'];
 $username = $row['username'];
@@ -34,55 +27,19 @@ $role = $row['role'];
 ?>
 
 <!-- ================================================ -->
-<?php 
 
-/*if(!isset($_SESSION['email'])){
-    header('Location: login.php');
-}
-
-$session_email = $_SESSION['email'];
-
-if(isset($_GET['edit'])){
-    $edit_id = $_GET['edit'];
-    $edit_query = "SELECT * FROM users WHERE id = $edit_id";
-    $edit_query_run = mysqli_query($con, $edit_query);
-    if(mysqli_num_rows($edit_query_run) > 0){
-        $edit_row = mysqli_fetch_array($edit_query_run);
-        $e_email = $edit_row['email'];
-        if($e_email == $session_email){
-            $e_first_name = $edit_row['first_name'];
-            $e_last_name = $edit_row['last_name'];
-            $e_contact_no = $edit_row['contact_no'];
-            $e_password = $edit_row['password'];
-            $e_image = $edit_row['image'];
-            
-        }
-        else{
-            header('location: index.php');
-        }
-   }
-}/* 
-    else{
-        header('location: index.php');
-    }
-}
-else{
-    header("location: index.php");
-}*/
-
-?>
 <!-- ================================================ -->
-<div class="container-fluid w-100 float-left position-relative ">
+<div class="container-fluid w-100 float-left position-relative">
     <div class="row">
         <div class="col-md-3">
             <?php include "side_menu.php"; ?>   
         </div>
         <div class="col-md-9  pd-5 mb-5">                     
-            <h1 class="text-primary pt-4">
+            <h1 class="text-primary pt-4 h1-s">
                 <i class="fa fa-user"></i> Profile: <small class="text-dark"> Personal Details </small>
             </h1>
             <hr>
-            <ol class="breadcrumb">
+            <ol class="breadcrumb bc-s">
                 <li><a href="index.php" class="pr-1"><i class="fa fa-tachometer"></i> Dashboard / </a></li>
               <li class="active pl-1"><i class="fa fa-user"></i> Profile </li>
             </ol>
@@ -139,7 +96,6 @@ else{
                                     <p id="contact_no" name="contact_no" class="form-control"><?php echo $contact_no;?></p>
                                 </div>
                               </div>
-                              
                             </div>
                             <hr class="my-4">
                             <h6 class="heading-small text-muted mb-4">Other Information</h6>
@@ -155,13 +111,9 @@ else{
                                 </div>
                               </div>
                             </div>
-                            
-                          </form>
                         </div>
                       </div>
-                          
                              </div>
-                           
                            </div>
                        </div>
                        <div class="col-md-4">
@@ -170,7 +122,7 @@ else{
                            ?>
                        </div>
                    </div>
-            
+            </form>
         </div><!--  .col-md-9/ -->  
     </div>
 </div>
@@ -184,16 +136,4 @@ else{
 <?php include "footer.php"; ?> 
 
 
-<script>
-  var check_pass = function(){
-    if (document.getElementById('password').value !=
-      document.getElementById('confirm_password').value) {
-      document.getElementById('match').innerHTML = 'Password is not matching';
-      document.getElementById('match').style.color = 'red';
-    }
-    else{
-      document.getElementById('match').innerHTML = 'Password matching';
-      document.getElementById('match').style.color = 'green';
-    }
-  }
-</script>
+

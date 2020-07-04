@@ -13,14 +13,15 @@
 
     if(isset($_GET['edit'])){
     $edit_id = $_GET['edit'];
-    if($session_role == 'admin'){
-        $get_query = "SELECT * FROM posts WHERE id = $edit_id";
+    if($session_role == 'admin' || $session_role == 'user'){
+        $get_query = "SELECT * FROM posts WHERE post_id = $edit_id";
         $get_run = mysqli_query($con, $get_query);
     }
-    else if($session_role == 'user'){
+    /*else if($session_role == 'user'){
+        
         $get_query = "SELECT * FROM posts WHERE id = $edit_id and user = '$session_role'";
         $get_run = mysqli_query($con, $get_query);
-    }
+    }*/
     
     if(mysqli_num_rows($get_run) > 0){
         $get_row = mysqli_fetch_array($get_run);
@@ -36,6 +37,7 @@
         $states = $get_row['states'];
         $cities = $get_row['cities'];
         $person_name = $get_row['person_name'];
+        $age = $get_row['age'];
         $contact_no = $get_row['contact_no'];
         $address = $get_row['address'];
         $missing_date = $get_row['missing_date'];
@@ -51,17 +53,17 @@ else{
 ?>
 
 
-<div class="container-fluid w-100 float-left position-relative <h-100xx></h-100xx>">
+<div class="container-fluid w-100 float-left position-relative">
     <div class="row">
         <div class="col-md-3">
             <?php include "side_menu.php"; ?>   
         </div>
         <div class="col-md-9">
-             <h1 class="text-primary pt-4">
+             <h1 class="text-primary pt-4 h1-s">
                 <i class="fas fa-file-signature"></i> Edit Post: <small>Edit Post Detail</small>
             </h1>
             <hr>
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb bc-s">
                 <ol class="breadcrumb">
                     <li><a href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard / </a></li>
                     <li class="active pl-1"><i class="fas fa-file-signature"></i> Edit Post </li>
@@ -83,6 +85,7 @@ else{
                         $up_image = $_FILES['image']['name'];
                         $up_tmp_name = $_FILES['image']['tmp_name'];
                         $up_person_name = $_POST['person_name'];
+                        $up_age = $_POST['age'];
                         $up_contact_no = $_POST['contact_no'];
                         $up_address = $_POST['address'];
                         $up_missing_date = $_POST['missing_date'];
@@ -97,14 +100,14 @@ else{
                             
                         }
                         else{
-                            echo $update_query = "UPDATE posts SET title = '$up_title' , image = '$up_image', person_name = '$up_person_name', gender = '$up_gender', categories = '$up_categories', countries = '$up_countries', states = '$up_states', cities = '$up_cities', contact_no = '$up_contact_no', address = '$up_address', missing_date = '$up_missing_date', status = 'publish' WHERE id = '$edit_id'";
+                             $update_query = "UPDATE posts SET title = '$up_title' , image = '$up_image', person_name = '$up_person_name', age = '$up_age', gender = '$up_gender', categories = '$up_categories', countries = '$up_countries', states = '$up_states', cities = '$up_cities', contact_no = '$up_contact_no', address = '$up_address', missing_date = '$up_missing_date', status = '$up_status' WHERE post_id = '$edit_id'";
                             
                             if(mysqli_query($con, $update_query)){
                                 
-                                $msg = "Post Has Been Updated Successfully";
+                                $_SESSION['msg'] = "<span class='pull-right' style='color:green;'>Post Has Been Updated Successfully</span>";
                                 $path = "assets/images/$up_image";
                                 
-                                 header("location: edit_post.php?edit=$edit_id");
+                                 //header("location: edit_post.php?edit=$edit_id");
                                     if(!empty($up_image)){
                                         if(move_uploaded_file($up_tmp_name, $path)){
                                         copy($path, "../$path");
@@ -124,24 +127,22 @@ else{
                                 
                             }
                             else{
-                                $error = "Post Has Not Been Updated Successfully";
+                                $_SESSION['msg'] = "<span class='pull-right' style='color:red;'>Post Has Not Been Updated Successfully</span>";
                                     }
                                 }
                         }
                     }
                     ?>
                     <form action="" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="status" value="<?php echo $status; ?>" />
                        <div class="row">
                        <div class="col-md-8  ">
                          <div class="container">
                           <div class="row">
                           
-                                <?php
-                                    if(isset($msg)){
-                                        echo "<span class='pull-right' style='color:green;'>$msg</span>";
-                                    }
-                                    else if(isset($error)){
-                                        echo "<span class='pull-right' style='color:red;'>$error</span>";
+                                <?php 
+                                    if(isset($_SESSION['msg'])){
+                                        echo $_SESSION['msg']; unset($_SESSION['msg']); $_SESSION['msg']='';
                                     }
                                 ?>
                           
@@ -152,7 +153,7 @@ else{
                               <h3 class="mb-0"> Edit Post </h3>
                             </div>
                             <div class="col-4 text-right">
-                              <input type="submit" value="Update User" name="Update" class="btn btn-primary">
+                              <input type="submit" value="Update Post" name="Update" class="btn btn-primary">
                               
                             </div>
                           </div>
@@ -167,7 +168,7 @@ else{
                                     <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Categories:</h6>
                                             <select class="form-control" name="categories" id="categories">
                                                 <?php
-                                                $cat_query = "SELECT * FROM categories ORDER BY id DESC";
+                                                $cat_query = "SELECT * FROM categories ORDER BY category_id DESC";
                                                 $cat_run = mysqli_query($con, $cat_query);
                                                 if(mysqli_num_rows($cat_run) > 0){
                                                     while($cat_row = mysqli_fetch_array($cat_run)){
@@ -219,6 +220,12 @@ else{
                                                 <option value="female" <?php if(isset($gender) and $gender == 'female'){echo "selected";}?>>Female</option>
                                                 <option value="others" <?php if(isset($gender) and $gender == 'others'){echo "selected";}?>>Others</option>
                                             </select>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <h6 class="pb-2 mb-0 text-primary border-bottom border-primary">Age:</h6>
+                                    <input type="number" id="age" name="age" class="form-control" placeholder="Enter Missing Person Age" value="<?php if(isset($age)){echo $age;}?>">
+                                  </div>
                                 </div>
                               </div>
                             </div>
